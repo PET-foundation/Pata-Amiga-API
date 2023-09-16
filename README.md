@@ -20,10 +20,9 @@ See real examples:
 ## Table of contents
 
 > * [Pata-Amiga-API](#pata-amiga-api)
->   * [About / Synopsis](#about--synopsis)
->   * [Table of contents](#table-of-contents)
->   * [Installation](#installation)
->   * [Usage](#usage)
+>   * [About / Synopsis](#about-pata-amiga-api)
+>   * [Documentation](#documentation)
+>   * [Getting starter](#getting-starter)
 >     * [Screenshots](#screenshots)
 >     * [Features](#features)
 >   * [Code](#code)
