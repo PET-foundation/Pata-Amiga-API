@@ -4,6 +4,8 @@ import com.pet.foundation.pataamiga.domain.user.Contact;
 import com.pet.foundation.pataamiga.domain.user.User;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.UUID;
+
 public record UserUpdateDTO(
         @NotBlank(message = "Name is mandatory")
         String name,

@@ -4,9 +4,11 @@ import com.pet.foundation.pataamiga.domain.user.User;
 import com.pet.foundation.pataamiga.domain.user.dto.UserCreateDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserUpdateDTO;
 
+import java.util.UUID;
+
 public interface UserService {
 
-    void createUser(UserCreateDTO userCreateDTO);
+    String createUser(UserCreateDTO userCreateDTO);
 
     User getUserByUuid(String uuid);
 

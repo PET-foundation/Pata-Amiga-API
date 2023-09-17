@@ -19,7 +19,6 @@ public class User {
     private Long id = 0L;
 
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false)
     private String uuid = "";
 
     @Column(nullable = false)

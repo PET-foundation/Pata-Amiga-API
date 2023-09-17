@@ -10,6 +10,8 @@ import com.pet.foundation.pataamiga.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,11 +19,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public void createUser(UserCreateDTO userCreateDTO) {
+    public String createUser(UserCreateDTO userCreateDTO) {
         if (emailAlreadyExists(userCreateDTO.email()))
             throw new EmailAlreadyExists("Email already exists");
 
-        userRepository.save(userCreateDTO.toEntity());
+        User userSaved = userRepository.save(userCreateDTO.toEntity());
+        return userSaved.getUuid();
     }
 
     @Override
