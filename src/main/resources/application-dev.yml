@@ -4,6 +4,8 @@ spring:
     url: jdbc:mysql://localhost:3306/pataamiga?useTimezone=true&serverTimezone=UTC
     username: root
     password:
+  cache:
+    type: redis
   jpa:
     hibernate:
       ddl-auto: update
