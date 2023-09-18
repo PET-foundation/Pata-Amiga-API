@@ -1,7 +1,9 @@
 package com.pet.foundation.pataamiga.controller;
 
+import com.pet.foundation.pataamiga.controller.responses.UserCreatedResponse;
 import com.pet.foundation.pataamiga.domain.user.User;
 import com.pet.foundation.pataamiga.domain.user.dto.UserCreateDTO;
+import com.pet.foundation.pataamiga.domain.user.dto.UserResponseDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserUpdateDTO;
 import com.pet.foundation.pataamiga.service.UserService;
 import jakarta.validation.Valid;
@@ -20,14 +22,16 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<User> getUserByUuid(@PathVariable String uuid) {
-        return ResponseEntity.ok(userService.getUserByUuid(uuid));
+    public ResponseEntity<UserResponseDTO> getUserByUuid(@PathVariable String uuid) {
+        User user = userService.getUserByUuid(uuid);
+        UserResponseDTO response = UserResponseDTO.toResponse(user);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody @Valid UserCreateDTO user) {
+    public ResponseEntity<UserCreatedResponse> createUser(@RequestBody @Valid UserCreateDTO user) {
         String userSaved = userService.createUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userSaved);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new UserCreatedResponse(userSaved));
     }
 
     @PutMapping("/{uuid}")

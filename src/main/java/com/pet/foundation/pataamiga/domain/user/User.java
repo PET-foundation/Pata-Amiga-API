@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.UUID;
 
 import java.util.Date;
 
@@ -52,6 +53,8 @@ public class User {
     @PrePersist
     protected void onCreate() {
         createdAt = new Date();
+        this.uuid = UUID.randomUUID().toString();
+        /*this.password = new BCryptPasswordEncoder().encode(this.password);*/
     }
 
     @PreUpdate
