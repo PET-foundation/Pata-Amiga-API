@@ -8,6 +8,7 @@ import com.pet.foundation.pataamiga.exceptions.UserNotFound;
 import com.pet.foundation.pataamiga.reposiotries.UserRepository;
 import com.pet.foundation.pataamiga.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
