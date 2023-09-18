@@ -3,6 +3,8 @@ package com.pet.foundation.pataamiga.reposiotries;
 import com.pet.foundation.pataamiga.domain.user.User;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,8 @@ class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-
-    @Test
-    @DisplayName("Test findByUUID")
-    void should_ReturnUUID_When_FindByUUID() {
+    @BeforeEach
+    void setUp() {
         userRepository.save(new User(
                 1L,
                 "uuid",
@@ -37,7 +37,17 @@ class UserRepositoryTest {
                 null,
                 null
         ));
+    }
 
+    @AfterEach
+    void tearDown() {
+        userRepository.deleteAll();
+    }
+
+
+    @Test
+    @DisplayName("Test findByUUID")
+    void should_ReturnUUID_When_FindByUUID() {
         // given
         String uuid = userRepository.findAll().get(0).getUuid();
         // when
@@ -50,20 +60,8 @@ class UserRepositoryTest {
     @Test
     @DisplayName("Test findByEmail")
     void should_ReturnUserByEmail_When_Success() {
-        userRepository.save(new User(
-                1L,
-                "uuid",
-                "name",
-                "email",
-                "password",
-                null,
-                null,
-                null,
-                null,
-                null
-        ));
         // given
-        String email = "email";
+        String email = "email1";
         // when
         var user = userRepository.findByEmail(email);
         // then

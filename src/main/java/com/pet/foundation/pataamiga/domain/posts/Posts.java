@@ -1,5 +1,6 @@
 package com.pet.foundation.pataamiga.domain.posts;
 
+import com.pet.foundation.pataamiga.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,10 +22,10 @@ public class Posts {
     private String uuid;
 
     @Column(nullable = false)
-    private String Name;
+    private String name;
 
     @Column(nullable = false)
-    private String Description;
+    private String description;
 
     @Column(nullable = true,  name = "picture", length = 20000, columnDefinition = "BLOB")
     @Lob
@@ -35,6 +36,10 @@ public class Posts {
 
     @Embedded
     private Info info = new Info();
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
