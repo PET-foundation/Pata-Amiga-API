@@ -2,8 +2,11 @@ package com.pet.foundation.pataamiga.domain.posts;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Enumerated;
+import lombok.Data;
 
 @Embeddable
+@Data
 public class Info {
     @Column
     private String specie;
@@ -35,6 +38,6 @@ public class Info {
     @Column
     private boolean specialNeeds;
 
-    @Column
+    @Enumerated
     private Port port;
 }

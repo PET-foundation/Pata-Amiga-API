@@ -1,5 +1,6 @@
 package com.pet.foundation.pataamiga.domain.posts;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pet.foundation.pataamiga.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,10 +10,10 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.UUID;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "posts")
+@Data
 public class Posts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,7 @@ public class Posts {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = true,  name = "picture", length = 20000, columnDefinition = "BLOB")
+    @Column(nullable = true, name = "picture", length = 20000, columnDefinition = "BLOB")
     @Lob
     private String picture;
 
@@ -35,10 +36,11 @@ public class Posts {
     private String location;
 
     @Embedded
-    private Info info = new Info();
+    private Info info;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @Temporal(TemporalType.TIMESTAMP)

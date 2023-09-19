@@ -8,6 +8,7 @@ import com.pet.foundation.pataamiga.reposiotries.PostsRepository;
 import com.pet.foundation.pataamiga.service.PostsService;
 import com.pet.foundation.pataamiga.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
