@@ -1,7 +1,7 @@
 package com.pet.foundation.pataamiga.exceptions.handler;
 
 import com.pet.foundation.pataamiga.exceptions.EmailAlreadyExists;
-import com.pet.foundation.pataamiga.exceptions.UserNotFound;
+import com.pet.foundation.pataamiga.exceptions.UserNotFoundException;
 import com.pet.foundation.pataamiga.exceptions.patterns.ExceptionDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +22,8 @@ public class RestExceptionHandler {
                 .build());
     }
 
-    @ExceptionHandler(UserNotFound.class)
-    public ResponseEntity<ExceptionDetails> handlerBadRequestException(UserNotFound bre) {
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ExceptionDetails> handlerUserNotFoundException(UserNotFoundException bre) {
         return ResponseEntity.badRequest().body(ExceptionDetails.builder()
                 .title("Not found Exception, check the documentation")
                 .status(400)

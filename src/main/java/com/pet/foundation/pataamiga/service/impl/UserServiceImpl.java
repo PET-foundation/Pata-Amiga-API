@@ -4,14 +4,11 @@ import com.pet.foundation.pataamiga.domain.user.User;
 import com.pet.foundation.pataamiga.domain.user.dto.UserCreateDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserUpdateDTO;
 import com.pet.foundation.pataamiga.exceptions.EmailAlreadyExists;
-import com.pet.foundation.pataamiga.exceptions.UserNotFound;
+import com.pet.foundation.pataamiga.exceptions.UserNotFoundException;
 import com.pet.foundation.pataamiga.reposiotries.UserRepository;
 import com.pet.foundation.pataamiga.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @AllArgsConstructor
 @Service
@@ -31,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUuid(String uuid) {
         return userRepository.findByUuid(uuid)
-                .orElseThrow(() -> new UserNotFound("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
     @Override
