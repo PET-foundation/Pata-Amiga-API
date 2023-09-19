@@ -5,8 +5,13 @@ import com.pet.foundation.pataamiga.exceptions.UserNotFoundException;
 import com.pet.foundation.pataamiga.exceptions.patterns.ExceptionDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
@@ -31,6 +36,23 @@ public class RestExceptionHandler {
                 .timestamp(System.currentTimeMillis())
                 .developerMessage(bre.getClass().getName())
                 .build());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ExceptionDetails> handlerMethodArgumentNotValidExceptionException(MethodArgumentNotValidException exception) {
+        List<FieldError> fieldError = exception.getBindingResult().getFieldErrors();
+        String fields = fieldError.stream().map(FieldError::getField).collect(Collectors.joining(", "));
+        String fieldMessage = fieldError.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
+        return ResponseEntity.badRequest().body(
+                ExceptionDetails.builder()
+                        .title("Bad Request Exception, Invalid Fields")
+                        .status(400)
+                        .details("Check the field(s) error")
+                        .timestamp(System.currentTimeMillis())
+                        .developerMessage(exception.getClass().getName())
+                        .fields(fields)
+                        .fieldsMessage(fieldMessage)
+                        .build());
     }
 
 }
