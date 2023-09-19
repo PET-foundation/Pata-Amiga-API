@@ -68,9 +68,29 @@ class PostsRepositoryTest {
     void should_ReturnPost_When_FindByName() {
         String name = postsRepository.findAll().get(0).getName();
 
-        String nameExpected = postsRepository.findByName(name).get().getName();
+        String nameExpected = postsRepository.findByName(name).get(0).getName();
 
         assertEquals(name, nameExpected);
+    }
+
+    @Test
+    @DisplayName("should find post by user uuid")
+    void should_ReturnPost_When_FindByUserUuid() {
+        String userUuid = postsRepository.findAll().get(0).getUser().getUuid();
+
+        String userUuidExpected = postsRepository.findByUserUuid(userUuid).get(0).getUser().getUuid();
+
+        assertEquals(userUuid, userUuidExpected);
+    }
+
+    @Test
+    @DisplayName("should find post by title containing")
+    void should_ReturnPost_When_FindByTitleContaining() {
+        String keyword = postsRepository.findAll().get(0).getName().substring(0, 2);
+
+        String nameExpected = postsRepository.findByNameContaining(keyword).get(0).getName();
+
+        assertEquals(keyword, nameExpected);
     }
 
 }
