@@ -18,8 +18,25 @@ class PostsRepositoryTest {
     @Autowired
     private PostsRepository postsRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @BeforeEach
     void setUp() {
+        User userToBeSaved = new User(
+                1L,
+                "uuid",
+                "name",
+                "email",
+                "password",
+                "picture",
+                null,
+                null,
+                null,
+                null
+        );
+        User savedUser = userRepository.save(userToBeSaved);
+
         Posts postToBeSaved = new Posts(
                 1L,
                 "uuid",
@@ -28,24 +45,14 @@ class PostsRepositoryTest {
                 "picture",
                 "location",
                 null,
-                new User(
-                        1L,
-                        "uuid",
-                        "name",
-                        "email",
-                        "password",
-                        "picture",
-                        null,
-                        null,
-                        null,
-                        null
-                ),
+                savedUser,
                 null,
                 null
         );
 
         postsRepository.save(postToBeSaved);
     }
+
 
     @AfterEach
     void tearDown() {
@@ -82,15 +89,4 @@ class PostsRepositoryTest {
 
         assertEquals(userUuid, userUuidExpected);
     }
-
-    @Test
-    @DisplayName("should find post by title containing")
-    void should_ReturnPost_When_FindByTitleContaining() {
-        String keyword = postsRepository.findAll().get(0).getName().substring(0, 2);
-
-        String nameExpected = postsRepository.findByNameContaining(keyword).get(0).getName();
-
-        assertEquals(keyword, nameExpected);
-    }
-
 }

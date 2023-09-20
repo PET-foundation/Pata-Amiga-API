@@ -35,6 +35,11 @@ public class PostsController {
         return ResponseEntity.ok(postsService.findByUserUuid(userUuid));
     }
 
+    @GetMapping("/name")
+    public ResponseEntity<List<Posts>> getPostsByName(@RequestParam String nameContains) {
+        return ResponseEntity.ok(postsService.containsName(nameContains));
+    }
+
     @PostMapping
     public ResponseEntity<?> createPost(@RequestBody PostCreateDTO post) {
         postsService.save(post);
