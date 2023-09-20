@@ -6,6 +6,10 @@ spring:
     password:
   cache:
     type: redis
+  #redis:
+   # host: localhost
+    #port: 6379
+    #password:
   jpa:
     hibernate:
       ddl-auto: update

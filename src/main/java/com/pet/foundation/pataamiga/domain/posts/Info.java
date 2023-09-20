@@ -5,9 +5,11 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.Enumerated;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Embeddable
 @Data
-public class Info {
+public class Info implements Serializable {
     @Column
     private String specie;
 
