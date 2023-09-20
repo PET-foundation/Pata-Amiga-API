@@ -3,6 +3,7 @@ package com.pet.foundation.pataamiga.service.impl;
 import com.pet.foundation.pataamiga.domain.posts.Posts;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateDTO;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostUpdateDTO;
+import com.pet.foundation.pataamiga.domain.posts.dto.PostsDTO;
 import com.pet.foundation.pataamiga.domain.user.User;
 import com.pet.foundation.pataamiga.reposiotries.PostsRepository;
 import com.pet.foundation.pataamiga.service.PostsService;
@@ -45,34 +46,47 @@ public class PostsServiceImpl implements PostsService {
 
     @Override
     public void save(PostCreateDTO post) {
-        User userFound = userService.getUserByUuid(post.userUuid());
+        User userFound = userService.getUserByUuid(post.getUserUuid());
 
-        Posts postToBeSaved = new Posts();
-        postToBeSaved.setUser(userFound);
-        postToBeSaved.setName(post.name());
-        postToBeSaved.setDescription(post.description());
-        postToBeSaved.setPicture(post.picture());
-        postToBeSaved.setLocation(post.location());
-        postToBeSaved.setInfo(post.info());
+        Posts postToBeSaved = toEntity(post, userFound);
+
         postsRepository.save(postToBeSaved);
     }
 
     @Override
     public void update(String uuid, PostUpdateDTO post) {
         Posts postFound = this.findByUuid(uuid);
-        postFound.setName(post.name());
-        postFound.setDescription(post.description());
-        postFound.setPicture(post.picture());
-        postFound.setLocation(post.location());
-        postFound.setInfo(post.info());
 
-        postsRepository.save(postFound);
+        Posts postToBeUpdate = toEntity(post, postFound);
+
+        postsRepository.save(postToBeUpdate);
     }
 
     @Override
     public void delete(String uuid) {
         Posts postFound = this.findByUuid(uuid);
         postsRepository.delete(postFound);
+    }
+
+    private Posts toEntity(PostsDTO postsDTO, Posts posts) {
+        posts.setName(postsDTO.getName());
+        posts.setDescription(postsDTO.getDescription());
+        posts.setPicture(postsDTO.getPicture());
+        posts.setLocation(postsDTO.getLocation());
+        if (postsDTO.getInfo() != null)
+            posts.setInfo(postsDTO.getInfo());
+        return posts;
+    }
+
+    private Posts toEntity(PostsDTO postsDTO, User user) {
+        Posts posts = new Posts();
+        posts.setUser(user);
+        posts.setName(postsDTO.getName());
+        posts.setDescription(postsDTO.getDescription());
+        posts.setPicture(postsDTO.getPicture());
+        posts.setLocation(postsDTO.getLocation());
+        posts.setInfo(postsDTO.getInfo());
+        return posts;
     }
 }
 
