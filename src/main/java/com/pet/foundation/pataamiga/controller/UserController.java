@@ -53,7 +53,7 @@ public class UserController {
     @Tag(name = "user")
     public ResponseEntity<User> deleteUser(@PathVariable String uuid) {
         userService.deleteUserByUuid(uuid);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }
