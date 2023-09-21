@@ -3,12 +3,18 @@ package com.pet.foundation.pataamiga.domain.posts;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Embeddable
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Info implements Serializable {
     @Column
     private String specie;

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pet.foundation.pataamiga.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity(name = "posts")
 @Data
+@Builder
 public class Posts implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

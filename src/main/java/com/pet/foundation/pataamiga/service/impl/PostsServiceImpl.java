@@ -5,6 +5,7 @@ import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateDTO;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostUpdateDTO;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostsDTO;
 import com.pet.foundation.pataamiga.domain.user.User;
+import com.pet.foundation.pataamiga.exceptions.PostNotFoundException;
 import com.pet.foundation.pataamiga.reposiotries.PostsRepository;
 import com.pet.foundation.pataamiga.service.PostsService;
 import com.pet.foundation.pataamiga.service.UserService;
@@ -31,7 +32,7 @@ public class PostsServiceImpl implements PostsService {
     @Override
     public Posts findByUuid(String uuid) {
         return postsRepository.findByUuid(uuid)
-                .orElseThrow(() -> new RuntimeException("Post not found"));
+                .orElseThrow(() -> new PostNotFoundException("Post not found"));
     }
 
     @Override
