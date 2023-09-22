@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.UUID;
 
 import java.util.Date;
@@ -54,7 +56,7 @@ public class User {
     protected void onCreate() {
         createdAt = new Date();
         this.uuid = UUID.randomUUID().toString();
-        /*this.password = new BCryptPasswordEncoder().encode(this.password);*/
+        this.password = new BCryptPasswordEncoder().encode(this.password);
     }
 
     @PreUpdate
