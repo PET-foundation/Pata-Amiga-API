@@ -5,6 +5,7 @@ import com.pet.foundation.pataamiga.domain.posts.Posts;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateDTO;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostUpdateDTO;
 import com.pet.foundation.pataamiga.service.PostsService;
+import com.pet.foundation.pataamiga.swagger.annotatios.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,8 @@ public class PostsController {
     @GetMapping
     @Operation(summary = "Get all posts")
     @Tag(name = "Posts")
+    @OkResponse
+    @ForbiddenResponse
     public ResponseEntity<List<PostsListResponse>> getAllPosts() {
         List<PostsListResponse> response = PostsListResponse.toResponse(postsService.findAll());
         return ResponseEntity.ok(response);
@@ -32,6 +35,9 @@ public class PostsController {
     @GetMapping("/{uuid}")
     @Operation(summary = "Get post by uuid")
     @Tag(name = "Posts")
+    @OkResponse
+    @ForbiddenResponse
+    @NotFoundResponse
     public ResponseEntity<Posts> getPostByUuid(@PathVariable String uuid) {
         return ResponseEntity.ok(postsService.findByUuid(uuid));
     }
@@ -39,6 +45,8 @@ public class PostsController {
     @GetMapping("/user")
     @Operation(summary = "Get posts by user uuid")
     @Tag(name = "Posts")
+    @OkResponse
+    @ForbiddenResponse
     public ResponseEntity<List<Posts>> getPostsByUserUuid(@RequestParam String userUuid) {
         return ResponseEntity.ok(postsService.findByUserUuid(userUuid));
     }
@@ -46,6 +54,8 @@ public class PostsController {
     @GetMapping("/name")
     @Operation(summary = "Get posts by name")
     @Tag(name = "Posts")
+    @OkResponse
+    @ForbiddenResponse
     public ResponseEntity<List<Posts>> getPostsByName(@RequestParam String nameContains) {
         return ResponseEntity.ok(postsService.containsName(nameContains));
     }
@@ -53,6 +63,9 @@ public class PostsController {
     @PostMapping
     @Operation(summary = "Create post")
     @Tag(name = "Posts")
+    @CreatedResponse
+    @ForbiddenResponse
+    @NotFoundResponse
     public ResponseEntity<?> createPost(@RequestBody PostCreateDTO post) {
         postsService.save(post);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -61,6 +74,9 @@ public class PostsController {
     @PutMapping("/{uuid}")
     @Operation(summary = "Update post")
     @Tag(name = "Posts")
+    @OkResponse
+    @ForbiddenResponse
+    @NotFoundResponse
     public ResponseEntity<?> updatePost(@PathVariable String uuid, @RequestBody PostUpdateDTO post) {
         postsService.update(uuid, post);
         return ResponseEntity.ok().build();
@@ -69,6 +85,9 @@ public class PostsController {
     @DeleteMapping
     @Operation(summary = "Delete post")
     @Tag(name = "Posts")
+    @NoContentResponse
+    @ForbiddenResponse
+    @NotFoundResponse
     public ResponseEntity<?> deletePost(@RequestParam String uuid) {
         postsService.delete(uuid);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

@@ -6,6 +6,7 @@ import com.pet.foundation.pataamiga.domain.user.dto.UserCreateDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserResponseDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserUpdateDTO;
 import com.pet.foundation.pataamiga.service.UserService;
+import com.pet.foundation.pataamiga.swagger.annotatios.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -26,23 +27,21 @@ public class UserController {
     @GetMapping("/{uuid}")
     @Operation(summary = "Get user by uuid")
     @Tag(name = "user")
+    @OkResponse
+    @ForbiddenResponse
+    @NotFoundResponse
     public ResponseEntity<UserResponseDTO> getUserByUuid(@PathVariable String uuid) {
         User user = userService.getUserByUuid(uuid);
         UserResponseDTO response = UserResponseDTO.toResponse(user);
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping
-    @Operation(summary = "Create user")
-    @Tag(name = "user")
-    public ResponseEntity<UserCreatedResponse> createUser(@RequestBody @Valid UserCreateDTO user) {
-        String userSaved = userService.createUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new UserCreatedResponse(userSaved));
-    }
-
     @PutMapping("/{uuid}")
     @Operation(summary = "Update user")
     @Tag(name = "user")
+    @OkResponse
+    @ForbiddenResponse
+    @NotFoundResponse
     public ResponseEntity<User> updateUser(@PathVariable String uuid, @RequestBody @Valid UserUpdateDTO user) {
         userService.updateUserByUuid(uuid, user);
         return ResponseEntity.ok().build();
@@ -51,6 +50,7 @@ public class UserController {
     @DeleteMapping("/{uuid}")
     @Operation(summary = "Delete user")
     @Tag(name = "user")
+    @NoContentResponse
     public ResponseEntity<User> deleteUser(@PathVariable String uuid) {
         userService.deleteUserByUuid(uuid);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

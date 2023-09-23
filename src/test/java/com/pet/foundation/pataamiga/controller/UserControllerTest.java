@@ -69,7 +69,7 @@ class UserControllerTest {
         assertThrows(UserNotFoundException.class, () -> userController.getUserByUuid("1"));
     }
 
-    @Test
+/*    @Test
     @DisplayName("createUser returns user when successful")
     void createUser_ReturnsUser_WhenSuccessful() {
         String uuidExpected = UserCreator.returnValidUser().getUuid();
@@ -80,7 +80,7 @@ class UserControllerTest {
         assertNotNull(userCreated);
         assertNotNull(userCreated.uuid());
         assertEquals(uuidExpected, userCreated.uuid());
-    }
+    }*/
 
     @Test
     @DisplayName("updateUser returns user when successful")
