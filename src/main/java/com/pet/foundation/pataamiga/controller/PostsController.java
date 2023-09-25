@@ -8,6 +8,7 @@ import com.pet.foundation.pataamiga.service.PostsService;
 import com.pet.foundation.pataamiga.swagger.annotatios.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +67,7 @@ public class PostsController {
     @CreatedResponse
     @ForbiddenResponse
     @NotFoundResponse
-    public ResponseEntity<?> createPost(@RequestBody PostCreateDTO post) {
+    public ResponseEntity<?> createPost(@RequestBody @Valid PostCreateDTO post) {
         postsService.save(post);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -77,7 +78,7 @@ public class PostsController {
     @OkResponse
     @ForbiddenResponse
     @NotFoundResponse
-    public ResponseEntity<?> updatePost(@PathVariable String uuid, @RequestBody PostUpdateDTO post) {
+    public ResponseEntity<?> updatePost(@PathVariable String uuid, @RequestBody @Valid PostUpdateDTO post) {
         postsService.update(uuid, post);
         return ResponseEntity.ok().build();
     }
