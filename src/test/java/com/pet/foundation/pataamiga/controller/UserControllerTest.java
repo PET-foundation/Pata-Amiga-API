@@ -1,6 +1,5 @@
 package com.pet.foundation.pataamiga.controller;
 
-import com.pet.foundation.pataamiga.controller.responses.UserCreatedResponse;
 import com.pet.foundation.pataamiga.domain.user.User;
 import com.pet.foundation.pataamiga.domain.user.dto.UserResponseDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserUpdateDTO;

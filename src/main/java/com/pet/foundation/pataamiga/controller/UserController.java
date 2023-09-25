@@ -1,12 +1,13 @@
 package com.pet.foundation.pataamiga.controller;
 
-import com.pet.foundation.pataamiga.controller.responses.UserCreatedResponse;
 import com.pet.foundation.pataamiga.domain.user.User;
-import com.pet.foundation.pataamiga.domain.user.dto.UserCreateDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserResponseDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserUpdateDTO;
 import com.pet.foundation.pataamiga.service.UserService;
-import com.pet.foundation.pataamiga.swagger.annotatios.*;
+import com.pet.foundation.pataamiga.swagger.annotatios.ForbiddenResponse;
+import com.pet.foundation.pataamiga.swagger.annotatios.NoContentResponse;
+import com.pet.foundation.pataamiga.swagger.annotatios.NotFoundResponse;
+import com.pet.foundation.pataamiga.swagger.annotatios.OkResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -14,8 +15,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/user")
