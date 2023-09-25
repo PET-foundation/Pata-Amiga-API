@@ -69,19 +69,6 @@ class UserControllerTest {
         assertThrows(UserNotFoundException.class, () -> userController.getUserByUuid("1"));
     }
 
-/*    @Test
-    @DisplayName("createUser returns user when successful")
-    void createUser_ReturnsUser_WhenSuccessful() {
-        String uuidExpected = UserCreator.returnValidUser().getUuid();
-
-        UserCreatedResponse userCreated = userController
-                .createUser(CreateUserDTOCreator.returnValidUserCreateDTO()).getBody();
-
-        assertNotNull(userCreated);
-        assertNotNull(userCreated.uuid());
-        assertEquals(uuidExpected, userCreated.uuid());
-    }*/
-
     @Test
     @DisplayName("updateUser returns user when successful")
     void updateUser_ReturnsUser_WhenSuccessful() {
