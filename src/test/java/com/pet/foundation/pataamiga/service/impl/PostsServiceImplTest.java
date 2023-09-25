@@ -7,6 +7,7 @@ import com.pet.foundation.pataamiga.reposiotries.PostsRepository;
 import com.pet.foundation.pataamiga.service.UserService;
 import com.pet.foundation.pataamiga.utils.CreatePostDTOCreator;
 import com.pet.foundation.pataamiga.utils.PostsCreator;
+import com.pet.foundation.pataamiga.utils.UserCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -141,10 +142,27 @@ class PostsServiceImplTest {
     }
 
     @Test
-    @DisplayName("update updates post when successful")
-    void update_UpdatesPost_WhenSuccessful() {
-        assertDoesNotThrow(() -> postsService.update("1", CreatePostDTOCreator.returnValidPostUpdateDTO()));
+    @DisplayName("update post when successful")
+    void should_UpdatesPost_WhenSuccessful() {
+        assertDoesNotThrow(() -> postsService.update(
+                "1",
+                CreatePostDTOCreator.returnValidPostUpdateDTO(),
+                UserCreator.returnValidUser().getEmail())
+        );
     }
+
+    @Test
+    @DisplayName("should not update post when user is not owner and throws an IllegalArgumentException")
+    void shouldNot_UpdatesPost_WhenUserIsNotOwner_And_Throws_IllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class,
+                () -> postsService.update(
+                        "1",
+                        CreatePostDTOCreator.returnValidPostUpdateDTO(),
+                        "user@gmail.com"
+                )
+        );
+    }
+
 
     @Test
     @DisplayName("update throws PostNotFoundException when post is not found")
@@ -153,13 +171,27 @@ class PostsServiceImplTest {
                 .thenReturn(Optional.empty());
 
         assertThrows(PostNotFoundException.class, () ->
-                postsService.update("1", CreatePostDTOCreator.returnValidPostUpdateDTO()));
+                postsService.update("1", CreatePostDTOCreator.returnValidPostUpdateDTO(), ""));
     }
 
     @Test
     @DisplayName("delete removes post when successful")
     void delete_RemovesPost_WhenSuccessful() {
-        assertDoesNotThrow(() -> postsService.delete("1"));
+        String uuidToDelete = PostsCreator.returnValidPosts().getUuid();
+        String userOwnerEmail = PostsCreator.returnValidPosts().getUser().getEmail();
+
+        assertDoesNotThrow(() -> postsService.delete(uuidToDelete, userOwnerEmail));
+    }
+
+    @Test
+    @DisplayName("should not delete post when user is not owner")
+    void shouldNot_RemovesPost_WhenUserInNotOwner() {
+        String uuidToDelete = PostsCreator.returnValidPosts().getUuid();
+        String userOwnerEmail = "invalid@email.com";
+
+        assertThrows(IllegalArgumentException.class,
+                () -> postsService.delete(uuidToDelete, userOwnerEmail)
+        );
     }
 
 }

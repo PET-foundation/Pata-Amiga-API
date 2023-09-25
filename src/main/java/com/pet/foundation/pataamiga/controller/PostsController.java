@@ -12,6 +12,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -78,8 +80,12 @@ public class PostsController {
     @OkResponse
     @ForbiddenResponse
     @NotFoundResponse
-    public ResponseEntity<?> updatePost(@PathVariable String uuid, @RequestBody @Valid PostUpdateDTO post) {
-        postsService.update(uuid, post);
+    public ResponseEntity<?> updatePost(
+            @PathVariable String uuid,
+            @RequestBody @Valid PostUpdateDTO post,
+            @AuthenticationPrincipal UserDetails userDetails
+            ) {
+        postsService.update(uuid, post, userDetails.getUsername());
         return ResponseEntity.ok().build();
     }
 
@@ -89,8 +95,11 @@ public class PostsController {
     @NoContentResponse
     @ForbiddenResponse
     @NotFoundResponse
-    public ResponseEntity<?> deletePost(@RequestParam String uuid) {
-        postsService.delete(uuid);
+    public ResponseEntity<?> deletePost(
+            @RequestParam String uuid,
+            @AuthenticationPrincipal UserDetails userDetails
+    ) {
+        postsService.delete(uuid, userDetails.getUsername());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public abstract class PostsDTO {
     @Schema(description = "Location of the post", example = "Tallinn")
     protected String location;
 
-    @NotEmpty(message = "Info is mandatory")
+    @NotNull(message = "Info is mandatory")
     protected Info info;
 
 }

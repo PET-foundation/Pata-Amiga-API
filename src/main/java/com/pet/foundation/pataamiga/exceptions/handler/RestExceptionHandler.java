@@ -49,6 +49,16 @@ public class RestExceptionHandler {
                 .developerMessage(bre.getClass().getName())
                 .build());
     }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ExceptionDetails> handlerIllegalArgumentException(IllegalArgumentException bre) {
+        return ResponseEntity.badRequest().body(ExceptionDetails.builder()
+                .title("Arguments invalids Exception, check the documentation")
+                .status(400)
+                .details(bre.getMessage())
+                .timestamp(System.currentTimeMillis())
+                .developerMessage(bre.getClass().getName())
+                .build());
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ExceptionDetails> handlerMethodArgumentNotValidExceptionException(MethodArgumentNotValidException exception) {

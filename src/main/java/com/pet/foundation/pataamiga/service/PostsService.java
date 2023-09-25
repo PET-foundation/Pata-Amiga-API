@@ -18,7 +18,7 @@ public interface PostsService {
 
     void save(PostCreateDTO post);
 
-    void update(String uuid, PostUpdateDTO post);
+    void update(String uuid, PostUpdateDTO post, String userEmail);
 
-    void delete(String uuid);
+    void delete(String uuid, String userEmail);
 }

@@ -19,6 +19,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -53,10 +56,10 @@ class PostsControllerTest {
                 .save(ArgumentMatchers.any(PostCreateDTO.class));
 
         BDDMockito.doNothing().when(postsService)
-                .update(ArgumentMatchers.anyString(), ArgumentMatchers.any(PostUpdateDTO.class));
+                .update(ArgumentMatchers.anyString(), ArgumentMatchers.any(PostUpdateDTO.class), ArgumentMatchers.anyString());
 
         BDDMockito.doNothing().when(postsService)
-                .delete(ArgumentMatchers.anyString());
+                .delete(ArgumentMatchers.anyString(), ArgumentMatchers.anyString());
     }
 
     @Test
@@ -168,11 +171,16 @@ class PostsControllerTest {
 
     @Test
     @DisplayName("updatePost returns post when successful")
+    @WithMockUser(username = "user@email.com")
     void updatePost_ReturnsPost_WhenSuccessful() {
         String uuidToUpdate = PostsCreator.returnValidPosts().getUuid();
         PostUpdateDTO postsDTO = CreatePostDTOCreator.returnValidPostUpdateDTO();
 
-        ResponseEntity<?> responseEntity = postsController.updatePost(uuidToUpdate, postsDTO);
+        ResponseEntity<?> responseEntity = postsController.updatePost(
+                uuidToUpdate,
+                postsDTO,
+                (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()
+        );
 
         assertNotNull(responseEntity);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -180,10 +188,14 @@ class PostsControllerTest {
 
     @Test
     @DisplayName("deletePost returns post when successful")
+    @WithMockUser(username = "user@email.com")
     void deletePost_ReturnsPost_WhenSuccessful() {
         String uuidToDelete = PostsCreator.returnValidPosts().getUuid();
 
-        ResponseEntity<?> responseEntity = postsController.deletePost(uuidToDelete);
+        ResponseEntity<?> responseEntity = postsController.deletePost(
+                uuidToDelete,
+                (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()
+        );
 
         assertNotNull(responseEntity);
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());

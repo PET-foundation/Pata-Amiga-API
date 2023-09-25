@@ -10,7 +10,6 @@ import com.pet.foundation.pataamiga.reposiotries.PostsRepository;
 import com.pet.foundation.pataamiga.service.PostsService;
 import com.pet.foundation.pataamiga.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,8 +54,10 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public void update(String uuid, PostUpdateDTO post) {
+    public void update(String uuid, PostUpdateDTO post, String userEmail) {
         Posts postFound = this.findByUuid(uuid);
+
+        verifyIfUserIsOwnerOfPost(userEmail, postFound);
 
         Posts postToBeUpdate = toEntity(post, postFound);
 
@@ -64,8 +65,10 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public void delete(String uuid) {
+    public void delete(String uuid, String userEmail) {
         Posts postFound = this.findByUuid(uuid);
+
+        verifyIfUserIsOwnerOfPost(userEmail, postFound);
         postsRepository.delete(postFound);
     }
 
@@ -88,6 +91,16 @@ public class PostsServiceImpl implements PostsService {
         posts.setLocation(postsDTO.getLocation());
         posts.setInfo(postsDTO.getInfo());
         return posts;
+    }
+
+    private void verifyIfUserIsOwnerOfPost(String userEmail, Posts post) {
+        if (!isUserOwnerOfPost(userEmail, post)) {
+            throw new IllegalArgumentException("You can not update other user's posts");
+        }
+    }
+
+    private boolean isUserOwnerOfPost(String userEmail, Posts post) {
+        return post.getUser().getEmail().equals(userEmail);
     }
 }
 
