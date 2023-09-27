@@ -1,0 +1,22 @@
+server:
+  error:
+    include-message: never
+spring:
+  datasource:
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        ddl-auto: update
+  cache:
+    type: redis
+    #redis:
+    # host: localhost
+    #port: 6379
+    #password:
+jwt:
+  secret: ${JWT_SECRET:secret}
+  expiration: ${JWT_EXPIRATION:86400000}

@@ -11,13 +11,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Java
+      - name: Setup Java JDK
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          java-package: 'jdk'
+          distribution: 'adopt'
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean install -Dspring.flyway.enabled=false
 
       - name: Run tests
-        run: mvn test
+        run: mvn test -Dspring.flyway.enabled=false
