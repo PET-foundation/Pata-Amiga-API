@@ -26,7 +26,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build Book service Container Image
-        run: mvn spring-boot:build-image -DskipTests
+        run: mvn spring-boot:build-image -DskipTests -Dspring.flyway.enabled=false
 
       - name: Push to Docker Hub Container Resgisty
         run: |
