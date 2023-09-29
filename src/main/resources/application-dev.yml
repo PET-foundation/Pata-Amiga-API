@@ -4,8 +4,13 @@ spring:
     url: jdbc:mysql://localhost:3306/pataamiga?useTimezone=true&serverTimezone=UTC
     username: root
     password:
-  cache:
-    type: redis
+  #security:
+   # filter:
+    #  cors:
+     #   allowed-origins: "*"
+      #  allowed-methods: "*"
+       # allowed-headers: "*"
+        #allow-credentials: true
   #redis:
    # host: localhost
     #port: 6379
