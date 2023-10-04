@@ -1,5 +1,6 @@
 package com.pet.foundation.pataamiga.reposiotries;
 
+import com.pet.foundation.pataamiga.domain.user.Contact;
 import com.pet.foundation.pataamiga.domain.user.User;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,10 +33,10 @@ class UserRepositoryTest {
                 "name",
                 "email1",
                 "password",
-                null,
-                null,
-                null,
-                null,
+                "",
+                "",
+                new Contact(),
+                new Date(),
                 null
         ));
     }

@@ -1,5 +1,6 @@
 package com.pet.foundation.pataamiga.controller;
 
+import com.pet.foundation.pataamiga.controller.responses.PostResponseWithUser;
 import com.pet.foundation.pataamiga.controller.responses.PostsListResponse;
 import com.pet.foundation.pataamiga.domain.posts.Posts;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateDTO;
@@ -91,7 +92,7 @@ class PostsControllerTest {
     void getPostByUuid_ReturnsPost_WhenSuccessful() {
         String expectedName = PostsCreator.returnValidPosts().getName();
 
-        Posts postsFound = postsController.getPostByUuid(expectedName).getBody();
+        PostResponseWithUser postsFound = postsController.getPostByUuid(expectedName).getBody();
 
         assertNotNull(postsFound);
         assertEquals(expectedName, postsFound.getName());
@@ -113,11 +114,11 @@ class PostsControllerTest {
     void getPostsByUserUuid_ReturnsListOfPosts_WhenSuccessful() {
         String expectedUserUuid = PostsCreator.returnValidPosts().getUser().getUuid();
 
-        List<Posts> postsFound = postsController.getPostsByUserUuid(expectedUserUuid).getBody();
+        List<PostsListResponse> postsFound = postsController.getPostsByUserUuid(expectedUserUuid).getBody();
 
         assertNotNull(postsFound);
         assertFalse(postsFound.isEmpty());
-        assertEquals(expectedUserUuid, postsFound.get(0).getUser().getUuid());
+        assertEquals(expectedUserUuid, postsFound.get(0).getUserUuid());
     }
 
     @Test
@@ -128,7 +129,7 @@ class PostsControllerTest {
 
         String expectedUserUuid = PostsCreator.returnValidPosts().getUser().getUuid();
 
-        List<Posts> postsFound = postsController.getPostsByUserUuid(expectedUserUuid).getBody();
+        List<PostsListResponse> postsFound = postsController.getPostsByUserUuid(expectedUserUuid).getBody();
 
         assertNotNull(postsFound);
         assertTrue(postsFound.isEmpty());
@@ -151,7 +152,7 @@ class PostsControllerTest {
     void getPostsByName_ReturnsListOfPosts_WhenSuccessful() {
         String expectedName = PostsCreator.returnValidPosts().getName();
 
-        List<Posts> postsFound = postsController.getPostsByName(expectedName).getBody();
+        List<PostsListResponse> postsFound = postsController.getPostsByName(expectedName).getBody();
 
         assertNotNull(postsFound);
         assertFalse(postsFound.isEmpty());

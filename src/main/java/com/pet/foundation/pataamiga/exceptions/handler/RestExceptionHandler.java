@@ -59,6 +59,16 @@ public class RestExceptionHandler {
                 .developerMessage(bre.getClass().getName())
                 .build());
     }
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<ExceptionDetails> handlerNullPointerException(NullPointerException bre) {
+        return ResponseEntity.badRequest().body(ExceptionDetails.builder()
+                .title("Null Pointer Exception, check the documentation")
+                .status(400)
+                .details(bre.getMessage())
+                .timestamp(System.currentTimeMillis())
+                .developerMessage(bre.getClass().getName())
+                .build());
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ExceptionDetails> handlerMethodArgumentNotValidExceptionException(MethodArgumentNotValidException exception) {

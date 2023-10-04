@@ -42,7 +42,6 @@ public class AuthController {
     @CreatedResponse
     @ConflictResponse
     public ResponseEntity<RegisterResponse> register(@RequestBody @Valid UserCreateDTO userCreateDTO) {
-        log.info("Registering user: {}", userCreateDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(userCreateDTO));
     }
 }
