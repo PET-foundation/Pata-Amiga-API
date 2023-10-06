@@ -5,6 +5,8 @@
 ![GitHub issues](https://img.shields.io/github/issues/PET-foundation/Pata-Amiga-API)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/PET-foundation/Pata-Amiga-API)
 ![Commits](https://img.shields.io/github/commit-activity/m/PET-foundation/Pata-Amiga-API)
+[![Run tests on pull request](https://github.com/PET-foundation/Pata-Amiga-API/actions/workflows/tests_pull_request.yml/badge.svg)](https://github.com/PET-foundation/Pata-Amiga-API/actions/workflows/tests_pull_request.yml)
+[![Build Docker Image](https://github.com/PET-foundation/Pata-Amiga-API/actions/workflows/build_and_push_to_dockerhub.yml/badge.svg)](https://github.com/PET-foundation/Pata-Amiga-API/actions/workflows/build_and_push_to_dockerhub.yml)
 
 ## About Pata Amiga API
 
