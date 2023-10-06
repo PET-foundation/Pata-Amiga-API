@@ -12,15 +12,15 @@
 * Project status: ![spring](https://img.shields.io/badge/working-green)
 * [P.E.T Support](mailto:matheusvictorhenrique@gmail.com)
 
-See real examples:
+## UML
 
-* <https://github.com/PET-foundation/Pata-Amiga>
-* <https://github.com/PET-foundation/Pata-Amiga-Android>
+[![](https://mermaid.ink/img/pako:eNqtVLFqwzAQ_RWhMU2Grh4KpVkKbQmEbl4u0tkWsSVxkpuWkH_v2XFAiZWl1IN1vHeSn987dJTKaZSFVC2EsDZQE3SlFfyMiPgMSOJ4Robn4c3ZWhidINtIhrG-z6EWOpyj2IFp57DnLx4cZY7x5CrT4sao2FPmwB1Yi5TgL85GUFGo85owa4goFCEv-nlG9F6nxCn14nLmMaOvcTYj69BADOD9nDE2xMTslKpA4c65_ZWCMYdSPpZSLFarqboIKkQDIVW6cSGGf09NY1BkfDTOZhy4F03rFNxsebWVYwcql2DjD_bhKsS_RzV8IRNT8KhMRiOx5Zlu_J6DUOdyRlM3qUDOr0WwQkGINKjMcF-glLF3yN7WSN1d2qM2NSFmqPEfof1A1CGhN46i8PzKuDVwuaG-7R7Hapq91eqJqwVXY3LJCM67hmrM_KqL9dwO9Hnv1FVauZQduwBG8w01CixlbJBnUxZcaqB9KUt74j7oo9v-WCWLSD0u5Xk4pgtNFhW0gVF2LTp6n668YTn9AjSSfAM?type=png)](https://mermaid.live/edit#pako:eNqtVLFqwzAQ_RWhMU2Grh4KpVkKbQmEbl4u0tkWsSVxkpuWkH_v2XFAiZWl1IN1vHeSn987dJTKaZSFVC2EsDZQE3SlFfyMiPgMSOJ4Robn4c3ZWhidINtIhrG-z6EWOpyj2IFp57DnLx4cZY7x5CrT4sao2FPmwB1Yi5TgL85GUFGo85owa4goFCEv-nlG9F6nxCn14nLmMaOvcTYj69BADOD9nDE2xMTslKpA4c65_ZWCMYdSPpZSLFarqboIKkQDIVW6cSGGf09NY1BkfDTOZhy4F03rFNxsebWVYwcql2DjD_bhKsS_RzV8IRNT8KhMRiOx5Zlu_J6DUOdyRlM3qUDOr0WwQkGINKjMcF-glLF3yN7WSN1d2qM2NSFmqPEfof1A1CGhN46i8PzKuDVwuaG-7R7Hapq91eqJqwVXY3LJCM67hmrM_KqL9dwO9Hnv1FVauZQduwBG8w01CixlbJBnUxZcaqB9KUt74j7oo9v-WCWLSD0u5Xk4pgtNFhW0gVF2LTp6n668YTn9AjSSfAM)
 
 ## Table of contents
 
 > * [Pata-Amiga-API](#pata-amiga-api)
 >   * [About / Synopsis](#about-pata-amiga-api)
+>   * [UML](#uml)
 >   * [Documentation](#documentation)
 >   * [Getting starter](#getting-starter)
 >     * [Screenshots](#screenshots)
