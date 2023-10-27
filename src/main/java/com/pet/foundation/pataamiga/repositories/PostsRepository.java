@@ -1,4 +1,4 @@
-package com.pet.foundation.pataamiga.reposiotries;
+package com.pet.foundation.pataamiga.repositories;
 
 import com.pet.foundation.pataamiga.domain.posts.Posts;
 import org.springframework.data.jpa.repository.JpaRepository;

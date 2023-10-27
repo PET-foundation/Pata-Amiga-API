@@ -6,7 +6,7 @@ import com.pet.foundation.pataamiga.domain.posts.dto.PostUpdateDTO;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostsDTO;
 import com.pet.foundation.pataamiga.domain.user.User;
 import com.pet.foundation.pataamiga.exceptions.PostNotFoundException;
-import com.pet.foundation.pataamiga.reposiotries.PostsRepository;
+import com.pet.foundation.pataamiga.repositories.PostsRepository;
 import com.pet.foundation.pataamiga.service.PostsService;
 import com.pet.foundation.pataamiga.service.UserService;
 import lombok.AllArgsConstructor;
