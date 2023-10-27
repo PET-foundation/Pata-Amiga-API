@@ -56,7 +56,6 @@ public class Shelter {
     private List<User> owners;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -64,5 +63,11 @@ public class Shelter {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Date updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.uuid = UUID.randomUUID();
+        this.createdAt = new Date();
+    }
 
 }

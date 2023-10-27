@@ -15,9 +15,10 @@ public interface ShelterMapper {
     ShelterMapper INSTANCE = Mappers.getMapper(ShelterMapper.class);
 
     Shelter toShelter(ShelterCreateDTO shelter);
+
     Shelter toShelter(ShelterUpdateDTO shelter);
 
-    default List<User> toUserList(List<Long> ownerIds) {
+    default List<User> toUserList(List<String> ownerIds) {
         if (ownerIds == null) {
             return null;
         }
@@ -25,7 +26,7 @@ public interface ShelterMapper {
         return ownerIds.stream()
                 .map(ownerId -> {
                     User user = new User();
-                    user.setId(ownerId);
+                    user.setUuid(ownerId);
                     return user;
                 }).toList();
     }
