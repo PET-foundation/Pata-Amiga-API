@@ -31,7 +31,7 @@ public class Posts implements Serializable {
     @Column(length = 600, nullable = false)
     private String description;
 
-    @Column(nullable = true, name = "picture", length = 20000, columnDefinition = "BLOB")
+    @Column(nullable = true, name = "picture", length = 16777215, columnDefinition = "MEDIUMBLOB")
     @Lob
     private String picture;
 

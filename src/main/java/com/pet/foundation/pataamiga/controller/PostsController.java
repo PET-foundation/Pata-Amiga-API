@@ -1,5 +1,6 @@
 package com.pet.foundation.pataamiga.controller;
 
+import com.pet.foundation.pataamiga.controller.responses.PostResponseWithUser;
 import com.pet.foundation.pataamiga.controller.responses.PostsListResponse;
 import com.pet.foundation.pataamiga.domain.posts.Posts;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateDTO;
@@ -41,8 +42,9 @@ public class PostsController {
     @OkResponse
     @ForbiddenResponse
     @NotFoundResponse
-    public ResponseEntity<Posts> getPostByUuid(@PathVariable String uuid) {
-        return ResponseEntity.ok(postsService.findByUuid(uuid));
+    public ResponseEntity<PostResponseWithUser> getPostByUuid(@PathVariable String uuid) {
+        PostResponseWithUser response = PostResponseWithUser.toResponse(postsService.findByUuid(uuid));
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/user")
@@ -50,8 +52,9 @@ public class PostsController {
     @Tag(name = "Posts")
     @OkResponse
     @ForbiddenResponse
-    public ResponseEntity<List<Posts>> getPostsByUserUuid(@RequestParam String userUuid) {
-        return ResponseEntity.ok(postsService.findByUserUuid(userUuid));
+    public ResponseEntity<List<PostsListResponse>> getPostsByUserUuid(@RequestParam String userUuid) {
+        List<PostsListResponse> response = PostsListResponse.toResponse(postsService.findByUserUuid(userUuid));
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/name")
@@ -59,8 +62,9 @@ public class PostsController {
     @Tag(name = "Posts")
     @OkResponse
     @ForbiddenResponse
-    public ResponseEntity<List<Posts>> getPostsByName(@RequestParam String nameContains) {
-        return ResponseEntity.ok(postsService.containsName(nameContains));
+    public ResponseEntity<List<PostsListResponse>> getPostsByName(@RequestParam String nameContains) {
+        List<PostsListResponse> response = PostsListResponse.toResponse(postsService.containsName(nameContains));
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping

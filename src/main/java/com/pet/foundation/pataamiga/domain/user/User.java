@@ -38,11 +38,11 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = true,  name = "profile_picture", length = 20000, columnDefinition = "BLOB")
+    @Column(nullable = true,  name = "profile_picture", length = 16777215, columnDefinition = "MEDIUMBLOB")
     @Lob
     private String profilePicture;
 
-    @Column(nullable = true,  name = "banner", length = 20000, columnDefinition = "BLOB")
+    @Column(nullable = true,  name = "banner", length = 16777215, columnDefinition = "MEDIUMBLOB")
     @Lob
     private String banner;
 

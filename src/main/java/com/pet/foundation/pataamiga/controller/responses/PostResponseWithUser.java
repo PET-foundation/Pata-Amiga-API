@@ -1,18 +1,17 @@
 package com.pet.foundation.pataamiga.controller.responses;
 
 import com.pet.foundation.pataamiga.domain.posts.Info;
-import com.pet.foundation.pataamiga.domain.posts.Posts;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PostsListResponse implements Serializable {
+public class PostResponseWithUser implements Serializable {
+
     private Long id;
     private String uuid;
     private String name;
@@ -25,8 +24,8 @@ public class PostsListResponse implements Serializable {
     private String userName;
     private String createdAt;
 
-    public static List<PostsListResponse> toResponse(List<Posts> posts) {
-        return posts.stream().map(post -> new PostsListResponse(
+    public static PostResponseWithUser toResponse(com.pet.foundation.pataamiga.domain.posts.Posts post) {
+        return new PostResponseWithUser(
                 post.getId(),
                 post.getUuid(),
                 post.getName(),
@@ -38,6 +37,6 @@ public class PostsListResponse implements Serializable {
                 post.getUser().getProfilePicture(),
                 post.getUser().getName(),
                 post.getCreatedAt().toString()
-        )).toList();
+        );
     }
 }

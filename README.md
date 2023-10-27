@@ -5,6 +5,8 @@
 ![GitHub issues](https://img.shields.io/github/issues/PET-foundation/Pata-Amiga-API)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/PET-foundation/Pata-Amiga-API)
 ![Commits](https://img.shields.io/github/commit-activity/m/PET-foundation/Pata-Amiga-API)
+[![Run tests on pull request](https://github.com/PET-foundation/Pata-Amiga-API/actions/workflows/tests_pull_request.yml/badge.svg)](https://github.com/PET-foundation/Pata-Amiga-API/actions/workflows/tests_pull_request.yml)
+[![Build Docker Image](https://github.com/PET-foundation/Pata-Amiga-API/actions/workflows/build_and_push_to_dockerhub.yml/badge.svg)](https://github.com/PET-foundation/Pata-Amiga-API/actions/workflows/build_and_push_to_dockerhub.yml)
 
 ## About Pata Amiga API
 
@@ -12,29 +14,22 @@
 * Project status: ![spring](https://img.shields.io/badge/working-green)
 * [P.E.T Support](mailto:matheusvictorhenrique@gmail.com)
 
-See real examples:
+## UML
 
-* <https://github.com/PET-foundation/Pata-Amiga>
-* <https://github.com/PET-foundation/Pata-Amiga-Android>
+[![](https://mermaid.ink/img/pako:eNrNVU2P0zAQ_SuWj5Ct8tFu2tyAvSABqlRxQbnMOpPE2sS2bIfdUvW_43xUmy7OCgmByCF23huPZ-ZN7BNlskCaUdaAMXccKg1tLoh7BoR8NajJaUT65y35JEVFeDGHDlZzB3adFxbQogfGFnjjwZXb9lFqnyelZckb3HNmO-3zeQ9CoJ4TH6SwwCxh4zin7sAiYRrdULz7lelUMWfOuZjX5eL35AuzlsIX3WMN1oBSHooLY2e1v-JKYHgv5YM3jr001vwdgQo0THNluRS-JBdFaCSDl4s-ilK6JEs5B4fe6sy1YH-kyrCNTxKjkHFfsNoV12ePTx4UKq-syKv6KlKnVoMgCANjdR-uj_wOjHGxxHaiQt0u8woLXmlEHzckC80XxMLM-b3Ulij3WugkvdDOSysONTb2nx8P_8MZMHRuTqOckpubaXLZJSM1TGUff86Z3Rs3Gda-ZtRPhka-MnLivLAZF86MLnr4N5yyfH981fh3nHqypQFtXb8CL9xdMvRDTm2NTlmauWkB-iGnuTg7O-isPBwFo5nVHQZ0rPF09dCshMY41LW3lfrzdDn1Q0AViG9SPtu4b5qd6BPNoiRdbXe7bRSmuyiMNrdxQI8O3q2iKNpu4tv1Zpuuwzg5B_TH4CJaJZs4TKN0nSRhz8bnn1EWCLI?type=png)](https://mermaid.live/edit#pako:eNrNVU2P0zAQ_SuWj5Ct8tFu2tyAvSABqlRxQbnMOpPE2sS2bIfdUvW_43xUmy7OCgmByCF23huPZ-ZN7BNlskCaUdaAMXccKg1tLoh7BoR8NajJaUT65y35JEVFeDGHDlZzB3adFxbQogfGFnjjwZXb9lFqnyelZckb3HNmO-3zeQ9CoJ4TH6SwwCxh4zin7sAiYRrdULz7lelUMWfOuZjX5eL35AuzlsIX3WMN1oBSHooLY2e1v-JKYHgv5YM3jr001vwdgQo0THNluRS-JBdFaCSDl4s-ilK6JEs5B4fe6sy1YH-kyrCNTxKjkHFfsNoV12ePTx4UKq-syKv6KlKnVoMgCANjdR-uj_wOjHGxxHaiQt0u8woLXmlEHzckC80XxMLM-b3Ulij3WugkvdDOSysONTb2nx8P_8MZMHRuTqOckpubaXLZJSM1TGUff86Z3Rs3Gda-ZtRPhka-MnLivLAZF86MLnr4N5yyfH981fh3nHqypQFtXb8CL9xdMvRDTm2NTlmauWkB-iGnuTg7O-isPBwFo5nVHQZ0rPF09dCshMY41LW3lfrzdDn1Q0AViG9SPtu4b5qd6BPNoiRdbXe7bRSmuyiMNrdxQI8O3q2iKNpu4tv1Zpuuwzg5B_TH4CJaJZs4TKN0nSRhz8bnn1EWCLI)
 
 ## Table of contents
 
 > * [Pata-Amiga-API](#pata-amiga-api)
 >   * [About / Synopsis](#about-pata-amiga-api)
+>   * [UML](#uml)
 >   * [Documentation](#documentation)
 >   * [Getting starter](#getting-starter)
->     * [Screenshots](#screenshots)
->     * [Features](#features)
->   * [Code](#code)
 >     * [Content](#content)
 >     * [Requirements](#requirements)
->     * [Limitations](#limitations)
 >     * [Build](#build)
->     * [Deploy (how to install build product)](#deploy-how-to-install-build-product)
->   * [Resources (Documentation and other links)](#resources-documentation-and-other-links)
 >   * [Contributing / Reporting issues](#contributing--reporting-issues)
 >   * [License](#license)
->   * [About Nuxeo](#about-nuxeo)
 
 ## Documentation
 
@@ -84,7 +79,7 @@ mvnw.cmd spring-boot:run
 * You can Run with docker. You can run oficial docker image:
 
 ```docker
-docker run pata-amiga-api
+docker run matheusvict/pataamiga
 ```
 
 **or**
@@ -96,63 +91,58 @@ docker build .
 
 * Open on your [localhost](http://localhost:8080/api)
 
-### Screenshots
-
-### Features
-
-## Code
-
-[![Build Status](https://qa.nuxeo.org/jenkins/buildStatus/icon?job=/nuxeo/addons_nuxeo-sample-project-master)](https://qa.nuxeo.org/jenkins/job/nuxeo/job/addons_nuxeo-sample-project-master/)
-
 ### Content
 
 Description, sub-modules organization...
 
 ### Requirements
 
-See [CORG/Compiling Nuxeo from sources](http://doc.nuxeo.com/x/xION)
-
-Sample: <https://github.com/nuxeo/nuxeo/blob/master/nuxeo-distribution/README.md>
-
-### Limitations
-
-Sample: <https://github.com/nuxeo-archives/nuxeo-features/tree/master/nuxeo-elasticsearch>
+[Java 17+](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+[MySQL](https://www.mysql.com/)
 
 ### Build
 
-    mvn clean install
+```bash
+ mvn clean install
+```
 
 Build options:
 
-* ...
+```bash
+ mvn clean install -Dspring.profiles.active=dev
+```
 
-### Deploy (how to install build product)
+```bash
+ mvn clean install -Dspring.profiles.active=prod
+```
 
-Direct to MP package if any. Otherwise provide steps to deploy on Nuxeo Platform:
-
- > Copy the built artifacts into `$NUXEO_HOME/templates/custom/bundles/` and activate the `custom` template.
-
-## Resources (Documentation and other links)
+```bash
+ mvn clean install -Dspring.flyway.enabled=false
+```
 
 ## Contributing / Reporting issues
 
-Link to JIRA component (or project if there is no component for that project). Samples:
+* First of all, to contributing, clone the repository:
 
-* [Link to component](https://jira.nuxeo.com/issues/?jql=project%20%3D%20NXP%20AND%20component%20%3D%20Elasticsearch%20AND%20Status%20!%3D%20%22Resolved%22%20ORDER%20BY%20updated%20DESC%2C%20priority%20DESC%2C%20created%20ASC)
-* [Link to project](https://jira.nuxeo.com/secure/CreateIssue!default.jspa?project=NXP)
+```bash
+git clone https://github.com/PET-foundation/Pata-Amiga-API
+```
+
+```bash
+cd Pata-Amiga-API
+```
+
+```bash
+docker compose up
+```
+
+**or**
+
+```bash
+mvn clean package -Dspring.profiles.active=dev
+```
+### And just do your part
 
 ## License
 
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
-
-## About Nuxeo
-
-Nuxeo Platform is an open source Content Services platform, written in Java. Data can be stored in both SQL & NoSQL databases.
-
-The development of the Nuxeo Platform is mostly done by Nuxeo employees with an open development model.
-
-The source code, documentation, roadmap, issue tracker, testing, benchmarks are all public.
-
-Typically, Nuxeo users build different types of information management solutions for [document management](https://www.nuxeo.com/solutions/document-management/), [case management](https://www.nuxeo.com/solutions/case-management/), and [digital asset management](https://www.nuxeo.com/solutions/dam-digital-asset-management/), use cases. It uses schema-flexible metadata & content models that allows content to be repurposed to fulfill future use cases.
-
-More information is available at [www.nuxeo.com](https://www.nuxeo.com).
+[Gnu license](https://www.gnu.org/licenses/gpl-3.0.pt-br.html)

@@ -14,6 +14,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,6 +33,17 @@ public class UserController {
     @NotFoundResponse
     public ResponseEntity<UserResponseDTO> getUserByUuid(@PathVariable String uuid) {
         User user = userService.getUserByUuid(uuid);
+        UserResponseDTO response = UserResponseDTO.toResponse(user);
+        return ResponseEntity.ok(response);
+    }
+    @GetMapping("/themselves")
+    @Operation(summary = "Get user by token")
+    @Tag(name = "user")
+    @OkResponse
+    @ForbiddenResponse
+    @NotFoundResponse
+    public ResponseEntity<UserResponseDTO> getUserByToken( @AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.getUserByEmail(userDetails.getUsername());
         UserResponseDTO response = UserResponseDTO.toResponse(user);
         return ResponseEntity.ok(response);
     }

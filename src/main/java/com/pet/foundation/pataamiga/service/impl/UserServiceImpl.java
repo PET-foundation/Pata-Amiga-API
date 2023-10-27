@@ -42,6 +42,8 @@ public class UserServiceImpl implements UserService {
 
         User userToSave =
                 userUpdateDTO.toEntity(userFound.getId(), userFound.getUuid());
+        userToSave.setPassword(userFound.getPassword());
+        userToSave.setCreatedAt(userFound.getCreatedAt());
 
         userRepository.save(userToSave);
 
