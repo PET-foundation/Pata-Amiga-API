@@ -3,7 +3,7 @@ package com.pet.foundation.pataamiga.service.impl;
 import com.pet.foundation.pataamiga.domain.user.User;
 import com.pet.foundation.pataamiga.exceptions.EmailAlreadyExists;
 import com.pet.foundation.pataamiga.exceptions.UserNotFoundException;
-import com.pet.foundation.pataamiga.reposiotries.UserRepository;
+import com.pet.foundation.pataamiga.repositories.UserRepository;
 import com.pet.foundation.pataamiga.utils.CreateUserDTOCreator;
 import com.pet.foundation.pataamiga.utils.UserCreator;
 import org.junit.jupiter.api.AfterEach;

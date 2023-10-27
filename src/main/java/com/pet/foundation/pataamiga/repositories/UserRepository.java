@@ -1,8 +1,7 @@
-package com.pet.foundation.pataamiga.reposiotries;
+package com.pet.foundation.pataamiga.repositories;
 
 import com.pet.foundation.pataamiga.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

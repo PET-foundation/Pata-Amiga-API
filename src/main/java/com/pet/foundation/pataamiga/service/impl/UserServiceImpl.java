@@ -5,7 +5,7 @@ import com.pet.foundation.pataamiga.domain.user.dto.UserCreateDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserUpdateDTO;
 import com.pet.foundation.pataamiga.exceptions.EmailAlreadyExists;
 import com.pet.foundation.pataamiga.exceptions.UserNotFoundException;
-import com.pet.foundation.pataamiga.reposiotries.UserRepository;
+import com.pet.foundation.pataamiga.repositories.UserRepository;
 import com.pet.foundation.pataamiga.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
