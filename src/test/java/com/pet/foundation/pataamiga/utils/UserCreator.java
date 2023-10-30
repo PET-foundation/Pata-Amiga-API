@@ -12,6 +12,7 @@ public class UserCreator {
                 .id(1L)
                 .uuid("1")
                 .name("Teste")
+                .password("password")
                 .email("user@email.com")
                 .profilePicture("profilePicture")
                 .banner("banner")
