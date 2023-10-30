@@ -5,6 +5,7 @@ import com.pet.foundation.pataamiga.domain.user.Contact;
 import com.pet.foundation.pataamiga.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,6 +17,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Data
 public class Shelter {
