@@ -1,9 +1,12 @@
 package com.pet.foundation.pataamiga.service.impl;
 
+import com.pet.foundation.pataamiga.domain.posts.Posts;
 import com.pet.foundation.pataamiga.domain.shelter.Shelter;
 import com.pet.foundation.pataamiga.exceptions.ShelterNotFoundException;
+import com.pet.foundation.pataamiga.repositories.PostsRepository;
 import com.pet.foundation.pataamiga.repositories.ShelterRepository;
 import com.pet.foundation.pataamiga.service.UserService;
+import com.pet.foundation.pataamiga.utils.PostsCreator;
 import com.pet.foundation.pataamiga.utils.ShelterCreator;
 import com.pet.foundation.pataamiga.utils.UserCreator;
 import jakarta.inject.Inject;
@@ -36,6 +39,9 @@ class ShelterServiceImplTest {
     @Mock
     private UserService userService;
 
+    @Mock
+    private PostsRepository postsRepository;
+
     @BeforeEach
     void setUp() {
         BDDMockito.when(shelterRepository.findAll())
@@ -53,6 +59,9 @@ class ShelterServiceImplTest {
 
         BDDMockito.when(userService.getUserByUuid(ArgumentMatchers.anyString()))
                 .thenReturn(UserCreator.returnValidUser());
+
+        BDDMockito.when(postsRepository.save(ArgumentMatchers.any(Posts.class)))
+                .thenReturn(PostsCreator.returnValidPosts());
     }
 
     @Test
@@ -163,6 +172,16 @@ class ShelterServiceImplTest {
         UUID uuid = shelter.getUuid();
 
         assertThrows(ShelterNotFoundException.class, () -> shelterService.updateShelter(uuid, shelter));
+    }
+
+    @Test
+    @DisplayName("Should create a post for shelter")
+    void should_Create_A_Post_For_Shelter() {
+        Posts postToBeSaved = PostsCreator.returnAPostTobeSaved();
+        Shelter shelterToCreatePost = ShelterCreator.returnValidShelter();
+        assertDoesNotThrow(() ->
+                shelterService.createPostForShelter(postToBeSaved, shelterToCreatePost.getUuid())
+        );
     }
 
 }

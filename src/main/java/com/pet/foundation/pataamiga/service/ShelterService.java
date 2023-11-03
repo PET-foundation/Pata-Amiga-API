@@ -1,5 +1,6 @@
 package com.pet.foundation.pataamiga.service;
 
+import com.pet.foundation.pataamiga.domain.posts.Posts;
 import com.pet.foundation.pataamiga.domain.shelter.Shelter;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface ShelterService {
     Optional<Shelter> getShelterByUUID(UUID uuid);
 
     void createShelter(Shelter shelter);
+
+    void createPostForShelter(Posts posts, UUID shelterUuid);
 
     void updateShelter(UUID uuid, Shelter shelter);
 

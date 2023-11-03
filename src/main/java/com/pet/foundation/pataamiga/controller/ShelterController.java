@@ -1,7 +1,10 @@
 package com.pet.foundation.pataamiga.controller;
 
+import com.pet.foundation.pataamiga.domain.posts.Posts;
+import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateForShelterDTO;
 import com.pet.foundation.pataamiga.domain.shelter.Shelter;
 import com.pet.foundation.pataamiga.domain.shelter.dto.ShelterCreateDTO;
+import com.pet.foundation.pataamiga.mapper.posts.PostsMapper;
 import com.pet.foundation.pataamiga.mapper.shelter.ShelterMapper;
 import com.pet.foundation.pataamiga.service.ShelterService;
 import com.pet.foundation.pataamiga.swagger.annotatios.*;
@@ -30,6 +33,22 @@ public class ShelterController {
     public ResponseEntity<?> createShelter(@RequestBody ShelterCreateDTO shelterCreateDTO) {
         Shelter shelter = ShelterMapper.INSTANCE.toShelter(shelterCreateDTO);
         shelterService.createShelter(shelter);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/createPost/{shelterUuid}")
+    @Operation(summary = "Create a new post for shelter")
+    @Tag(name = "Shelter")
+    @CreatedResponse
+    @ForbiddenResponse
+    @NotFoundResponse
+    public ResponseEntity<?> createPostForShelter(
+            @RequestBody PostCreateForShelterDTO postCreateForShelterDTO,
+            @PathVariable UUID shelterUuid
+    ) {
+        Posts postsToShelter = PostsMapper.INSTANCE.toEntity(postCreateForShelterDTO);
+        this.shelterService.createPostForShelter(postsToShelter, shelterUuid);
+
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

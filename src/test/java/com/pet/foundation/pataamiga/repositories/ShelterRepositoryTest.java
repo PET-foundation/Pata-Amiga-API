@@ -1,7 +1,9 @@
 package com.pet.foundation.pataamiga.repositories;
 
+import com.pet.foundation.pataamiga.domain.posts.Posts;
 import com.pet.foundation.pataamiga.domain.shelter.Shelter;
 import com.pet.foundation.pataamiga.domain.user.User;
+import com.pet.foundation.pataamiga.utils.PostsCreator;
 import com.pet.foundation.pataamiga.utils.UserCreator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,14 +30,25 @@ class ShelterRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PostsRepository postsRepository;
+
     @BeforeEach
     void setUp() {
         List<User> users = List.of(UserCreator.returnValidUser());
         List<User> owners = new ArrayList<>();
+        List<Posts> posts = List.of(PostsCreator.returnValidPosts());
+        List<Posts> postsFromShelter = new ArrayList<>();
 
         for (User user : users) {
             User owner = userRepository.save(user);
             owners.add(owner);
+        }
+
+        for (Posts post : posts) {
+            post.setUser(owners.get(0));
+            Posts postSaved = postsRepository.save(post);
+            postsFromShelter.add(postSaved);
         }
 
         Shelter shelter = new Shelter(
@@ -50,6 +63,7 @@ class ShelterRepositoryTest {
                 null,
                 null,
                 owners,
+                postsFromShelter,
                 Date.from(Instant.now()),
                 Date.from(Instant.now())
         );

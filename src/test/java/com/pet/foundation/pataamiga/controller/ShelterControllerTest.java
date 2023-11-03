@@ -1,8 +1,9 @@
 package com.pet.foundation.pataamiga.controller;
 
+import com.pet.foundation.pataamiga.domain.posts.Posts;
+import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateForShelterDTO;
 import com.pet.foundation.pataamiga.domain.shelter.Shelter;
 import com.pet.foundation.pataamiga.domain.shelter.dto.ShelterCreateDTO;
-import com.pet.foundation.pataamiga.domain.shelter.dto.ShelterDTO;
 import com.pet.foundation.pataamiga.service.ShelterService;
 import com.pet.foundation.pataamiga.utils.ShelterCreator;
 import com.pet.foundation.pataamiga.utils.ShelterDTOCreator;
@@ -46,6 +47,9 @@ class ShelterControllerTest {
 
         BDDMockito.when(shelterService.getShelterByUUID(ArgumentMatchers.any()))
                 .thenReturn(Optional.of(validShelter));
+
+        BDDMockito.doNothing().when(shelterService)
+                .createPostForShelter(ArgumentMatchers.any(Posts.class), ArgumentMatchers.any());
 
         BDDMockito.doNothing().when(shelterService)
                 .createShelter(ArgumentMatchers.any(Shelter.class));
@@ -104,6 +108,19 @@ class ShelterControllerTest {
 
         assertNotNull(shelterResponseEntity);
         assertEquals(HttpStatus.CREATED, shelterResponseEntity.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Should create a post for a shelter without throw a exception")
+    void should_Create_A_Post_For_A_Shelter() {
+        UUID shelteruuid = ShelterCreator.returnValidShelter().getUuid();
+        PostCreateForShelterDTO postCreateForShelterDTO = PostCreateForShelterDTO.builder()
+                .build();
+
+        assertDoesNotThrow(() ->
+                this.shelterController.createPostForShelter(postCreateForShelterDTO, shelteruuid)
+        );
+
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.pet.foundation.pataamiga.domain.shelter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pet.foundation.pataamiga.domain.posts.Posts;
 import com.pet.foundation.pataamiga.domain.user.Contact;
 import com.pet.foundation.pataamiga.domain.user.User;
 import jakarta.persistence.*;
@@ -59,6 +60,11 @@ public class Shelter {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private List<User> owners;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shelter_id")
+    @JsonIgnore
+    private List<Posts> posts;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")

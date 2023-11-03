@@ -1,9 +1,15 @@
 package com.pet.foundation.pataamiga.service.impl;
 
+import com.pet.foundation.pataamiga.domain.posts.Posts;
+import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateDTO;
+import com.pet.foundation.pataamiga.domain.posts.dto.PostsDTO;
 import com.pet.foundation.pataamiga.domain.shelter.Shelter;
 import com.pet.foundation.pataamiga.domain.user.User;
 import com.pet.foundation.pataamiga.exceptions.ShelterNotFoundException;
+import com.pet.foundation.pataamiga.mapper.posts.PostsMapper;
+import com.pet.foundation.pataamiga.repositories.PostsRepository;
 import com.pet.foundation.pataamiga.repositories.ShelterRepository;
+import com.pet.foundation.pataamiga.service.PostsService;
 import com.pet.foundation.pataamiga.service.ShelterService;
 import com.pet.foundation.pataamiga.service.UserService;
 import lombok.AllArgsConstructor;
@@ -22,7 +28,9 @@ public class ShelterServiceImpl implements ShelterService {
     @Autowired
     private ShelterRepository shelterRepository;
     @Autowired
-    private  UserService userService;
+    private UserService userService;
+    @Autowired
+    private PostsRepository postsRepository;
 
     @Override
     public List<Shelter> getAllShelters() {
@@ -50,6 +58,19 @@ public class ShelterServiceImpl implements ShelterService {
                 .forEach(owners::add);
         shelter.setOwners(owners);
         shelterRepository.save(shelter);
+    }
+
+    @Override
+    public void createPostForShelter(Posts posts, UUID shelterUuid) {
+        Posts postsSaved = this.postsRepository.save(posts);
+        List<Posts> postsList = new ArrayList<>();
+        postsList.add(postsSaved);
+
+        Shelter shelterFound = this.getShelterByUUID(shelterUuid).get();
+
+        shelterFound.setPosts(postsList);
+        this.shelterRepository.save(shelterFound);
+
     }
 
     @Override
