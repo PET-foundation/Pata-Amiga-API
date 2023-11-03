@@ -48,6 +48,7 @@ class ShelterRepositoryTest {
                 "profilePicture",
                 "banner",
                 null,
+                null,
                 owners,
                 Date.from(Instant.now()),
                 Date.from(Instant.now())

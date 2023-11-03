@@ -17,6 +17,7 @@ public class ShelterCreator {
                 .profilePicture("picture")
                 .banner("banner")
                 .contact(null)
+                .pixKey(null)
                 .location("location")
                 .adoptionPolice("adoption police")
                 .owners(List.of(UserCreator.returnValidUser()))

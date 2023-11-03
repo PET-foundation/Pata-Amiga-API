@@ -52,6 +52,9 @@ public class Shelter {
     @Embedded
     private Contact contact = new Contact();
 
+    @Column(length = 500)
+    private String pixKey;
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore

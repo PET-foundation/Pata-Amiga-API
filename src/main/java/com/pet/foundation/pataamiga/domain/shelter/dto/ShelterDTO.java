@@ -39,5 +39,9 @@ public abstract class ShelterDTO {
     @NotNull(message = "Contact is mandatory")
     protected Contact contact = new Contact();
 
+    @Schema(description = "Pix key from shelter", example = "shelter@email.com")
+    protected String pixKey;
+
+    @Schema(description = "Adoption Police", example = "We don't allow cows")
     protected String adoptionPolice;
 }
