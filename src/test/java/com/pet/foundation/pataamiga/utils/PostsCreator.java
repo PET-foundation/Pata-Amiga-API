@@ -38,4 +38,17 @@ public class PostsCreator {
                 .weight("weight")
                 .build();
     }
+
+    public static Posts returnAPostTobeSaved() {
+        return Posts.builder()
+                .name("Teste")
+                .description("description")
+                .picture("picture")
+                .location("location")
+                .info(returnValidPostInfo())
+                .user(UserCreator.returnValidUser())
+                .createdAt(new Date())
+                .updatedAt(new Date())
+                .build();
+    }
 }

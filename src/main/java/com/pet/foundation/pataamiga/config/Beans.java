@@ -23,16 +23,6 @@ import java.util.Arrays;
 @Configuration
 public class Beans {
 
-    @Bean
-    public CacheManager cacheManager(RedisConnectionFactory factory) {
-        Duration expiration = Duration.ofSeconds(60);
-        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(expiration)
-                .disableCachingNullValues();
-
-        return RedisCacheManager.builder(factory).cacheDefaults(config).build();
-    }
-
     public SecurityScheme createAPIKeyScheme() {
         return new SecurityScheme()
                 .type(SecurityScheme.Type.HTTP)

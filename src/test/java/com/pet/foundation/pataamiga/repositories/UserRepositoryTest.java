@@ -1,8 +1,7 @@
-package com.pet.foundation.pataamiga.reposiotries;
+package com.pet.foundation.pataamiga.repositories;
 
 import com.pet.foundation.pataamiga.domain.user.Contact;
 import com.pet.foundation.pataamiga.domain.user.User;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Date;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 

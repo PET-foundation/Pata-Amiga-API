@@ -3,7 +3,7 @@ package com.pet.foundation.pataamiga.service.impl;
 import com.pet.foundation.pataamiga.domain.posts.Posts;
 import com.pet.foundation.pataamiga.exceptions.PostNotFoundException;
 import com.pet.foundation.pataamiga.exceptions.UserNotFoundException;
-import com.pet.foundation.pataamiga.reposiotries.PostsRepository;
+import com.pet.foundation.pataamiga.repositories.PostsRepository;
 import com.pet.foundation.pataamiga.service.UserService;
 import com.pet.foundation.pataamiga.utils.CreatePostDTOCreator;
 import com.pet.foundation.pataamiga.utils.PostsCreator;

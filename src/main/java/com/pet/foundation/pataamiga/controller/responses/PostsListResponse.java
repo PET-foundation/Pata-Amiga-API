@@ -34,9 +34,9 @@ public class PostsListResponse implements Serializable {
                 post.getPicture(),
                 post.getLocation(),
                 post.getInfo(),
-                post.getUser().getUuid(),
-                post.getUser().getProfilePicture(),
-                post.getUser().getName(),
+                post.getUser() != null ? post.getUser().getUuid() : "",
+                post.getUser() != null ? post.getUser().getProfilePicture() : "",
+                post.getUser() != null ? post.getUser().getName() : "",
                 post.getCreatedAt().toString()
         )).toList();
     }
