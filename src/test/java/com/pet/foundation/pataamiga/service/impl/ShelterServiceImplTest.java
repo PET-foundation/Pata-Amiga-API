@@ -1,11 +1,14 @@
 package com.pet.foundation.pataamiga.service.impl;
 
 import com.pet.foundation.pataamiga.domain.posts.Posts;
+import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateDTO;
 import com.pet.foundation.pataamiga.domain.shelter.Shelter;
 import com.pet.foundation.pataamiga.exceptions.ShelterNotFoundException;
 import com.pet.foundation.pataamiga.repositories.PostsRepository;
 import com.pet.foundation.pataamiga.repositories.ShelterRepository;
+import com.pet.foundation.pataamiga.service.PostsService;
 import com.pet.foundation.pataamiga.service.UserService;
+import com.pet.foundation.pataamiga.utils.CreatePostDTOCreator;
 import com.pet.foundation.pataamiga.utils.PostsCreator;
 import com.pet.foundation.pataamiga.utils.ShelterCreator;
 import com.pet.foundation.pataamiga.utils.UserCreator;
@@ -40,7 +43,8 @@ class ShelterServiceImplTest {
     private UserService userService;
 
     @Mock
-    private PostsRepository postsRepository;
+    private PostsService postsService;
+
 
     @BeforeEach
     void setUp() {
@@ -52,6 +56,7 @@ class ShelterServiceImplTest {
 
         BDDMockito.when(shelterRepository.findShelterByUuid(ArgumentMatchers.any()))
                 .thenReturn(Optional.of(ShelterCreator.returnValidShelter()));
+
         BDDMockito.when(shelterRepository.save(ArgumentMatchers.any(Shelter.class)))
                 .thenReturn(ShelterCreator.returnValidShelter());
 
@@ -60,8 +65,9 @@ class ShelterServiceImplTest {
         BDDMockito.when(userService.getUserByUuid(ArgumentMatchers.anyString()))
                 .thenReturn(UserCreator.returnValidUser());
 
-        BDDMockito.when(postsRepository.save(ArgumentMatchers.any(Posts.class)))
+        BDDMockito.when(postsService.save(ArgumentMatchers.any(PostCreateDTO.class)))
                 .thenReturn(PostsCreator.returnValidPosts());
+
     }
 
     @Test
@@ -177,7 +183,7 @@ class ShelterServiceImplTest {
     @Test
     @DisplayName("Should create a post for shelter")
     void should_Create_A_Post_For_Shelter() {
-        Posts postToBeSaved = PostsCreator.returnAPostTobeSaved();
+        PostCreateDTO postToBeSaved = CreatePostDTOCreator.returnValidPostCreateDTO();
         Shelter shelterToCreatePost = ShelterCreator.returnValidShelter();
         assertDoesNotThrow(() ->
                 shelterService.createPostForShelter(postToBeSaved, shelterToCreatePost.getUuid())
