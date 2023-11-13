@@ -16,7 +16,7 @@ public interface PostsService {
 
     List<Posts> containsName(String name);
 
-    void save(PostCreateDTO post);
+    Posts save(PostCreateDTO post);
 
     void update(String uuid, PostUpdateDTO post, String userEmail);
 
