@@ -61,7 +61,7 @@ class ShelterRepositoryTest {
                 "profilePicture",
                 "banner",
                 null,
-                null,
+                "46133",
                 owners,
                 postsFromShelter,
                 Date.from(Instant.now()),
