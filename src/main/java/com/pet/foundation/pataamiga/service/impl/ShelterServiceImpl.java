@@ -30,7 +30,7 @@ public class ShelterServiceImpl implements ShelterService {
     @Autowired
     private UserService userService;
     @Autowired
-    private PostsRepository postsRepository;
+    private PostsService postsService;
 
     @Override
     public List<Shelter> getAllShelters() {
@@ -50,6 +50,13 @@ public class ShelterServiceImpl implements ShelterService {
     }
 
     @Override
+    public List<Posts> getAllPostsFromShelter(UUID shelterUuid) {
+        Shelter shelterFound = this.getShelterByUUID(shelterUuid).get();
+
+        return shelterFound.getPosts();
+    }
+
+    @Override
     public void createShelter(Shelter shelter) {
         List<User> owners = new ArrayList<>();
         shelter.getOwners()
@@ -61,8 +68,8 @@ public class ShelterServiceImpl implements ShelterService {
     }
 
     @Override
-    public void createPostForShelter(Posts posts, UUID shelterUuid) {
-        Posts postsSaved = this.postsRepository.save(posts);
+    public void createPostForShelter(PostCreateDTO posts, UUID shelterUuid) {
+        Posts postsSaved = this.postsService.save(posts);
         List<Posts> postsList = new ArrayList<>();
         postsList.add(postsSaved);
 

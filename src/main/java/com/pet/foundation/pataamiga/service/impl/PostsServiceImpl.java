@@ -45,12 +45,13 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public void save(PostCreateDTO post) {
+    public Posts save(PostCreateDTO post) {
         User userFound = userService.getUserByUuid(post.getUserUuid());
 
         Posts postToBeSaved = toEntity(post, userFound);
 
-        postsRepository.save(postToBeSaved);
+        return postsRepository.save(postToBeSaved);
+
     }
 
     @Override

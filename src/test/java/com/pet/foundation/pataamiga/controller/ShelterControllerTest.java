@@ -1,6 +1,8 @@
 package com.pet.foundation.pataamiga.controller;
 
+import com.pet.foundation.pataamiga.controller.responses.ShelterResponse;
 import com.pet.foundation.pataamiga.domain.posts.Posts;
+import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateDTO;
 import com.pet.foundation.pataamiga.domain.posts.dto.PostCreateForShelterDTO;
 import com.pet.foundation.pataamiga.domain.shelter.Shelter;
 import com.pet.foundation.pataamiga.domain.shelter.dto.ShelterCreateDTO;
@@ -49,7 +51,7 @@ class ShelterControllerTest {
                 .thenReturn(Optional.of(validShelter));
 
         BDDMockito.doNothing().when(shelterService)
-                .createPostForShelter(ArgumentMatchers.any(Posts.class), ArgumentMatchers.any());
+                .createPostForShelter(ArgumentMatchers.any(PostCreateDTO.class), ArgumentMatchers.any());
 
         BDDMockito.doNothing().when(shelterService)
                 .createShelter(ArgumentMatchers.any(Shelter.class));
@@ -65,7 +67,7 @@ class ShelterControllerTest {
     @DisplayName("Should return list of shelters when getAllShelters is called")
     void should_ReturnListOfShelters_When_GetAllShelters() {
         String expectedName = ShelterCreator.returnValidShelter().getName();
-        List<Shelter> shelters = shelterController.getAllShelters().getBody();
+        List<ShelterResponse> shelters = shelterController.getAllShelters().getBody();
 
         assertNotNull(shelters);
         assertFalse(shelters.isEmpty());
@@ -92,7 +94,7 @@ class ShelterControllerTest {
         String expectedName = ShelterCreator.returnValidShelter().getName();
         UUID uuid = ShelterCreator.returnValidShelter().getUuid();
 
-        Shelter shelter = shelterController
+        ShelterResponse shelter = shelterController
                 .getShelterByUUID(uuid).getBody();
 
         assertNotNull(shelter);
@@ -114,7 +116,7 @@ class ShelterControllerTest {
     @DisplayName("Should create a post for a shelter without throw a exception")
     void should_Create_A_Post_For_A_Shelter() {
         UUID shelteruuid = ShelterCreator.returnValidShelter().getUuid();
-        PostCreateForShelterDTO postCreateForShelterDTO = PostCreateForShelterDTO.builder()
+        PostCreateDTO postCreateForShelterDTO = PostCreateDTO.builder()
                 .build();
 
         assertDoesNotThrow(() ->

@@ -53,8 +53,8 @@ class PostsControllerTest {
         BDDMockito.when(postsService.containsName(ArgumentMatchers.anyString()))
                 .thenReturn(List.of(PostsCreator.returnValidPosts()));
 
-        BDDMockito.doNothing().when(postsService)
-                .save(ArgumentMatchers.any(PostCreateDTO.class));
+        BDDMockito.when(postsService.save(ArgumentMatchers.any(PostCreateDTO.class)))
+                        .thenReturn(PostsCreator.returnValidPosts());
 
         BDDMockito.doNothing().when(postsService)
                 .update(ArgumentMatchers.anyString(), ArgumentMatchers.any(PostUpdateDTO.class), ArgumentMatchers.anyString());

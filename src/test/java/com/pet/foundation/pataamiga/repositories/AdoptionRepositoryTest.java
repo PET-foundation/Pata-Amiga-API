@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.sql.Date;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -81,11 +82,11 @@ class AdoptionRepositoryTest {
 
         Adoption adoptionToBeSaved = Adoption.builder()
                 .id(1L)
-                .uuid(UUID.randomUUID())
+                .uuid(UUID.randomUUID().toString())
                 .adopter(userSaved)
                 .adopted(PostSaved)
-                .createdAt(Date.from(Instant.now()))
-                .updatedAt(Date.from(Instant.now()))
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
                 .build();
 
         this.adoptionRepository.save(adoptionToBeSaved);

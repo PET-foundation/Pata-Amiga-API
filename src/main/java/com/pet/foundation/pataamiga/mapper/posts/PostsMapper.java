@@ -12,5 +12,5 @@ public interface PostsMapper {
     PostsMapper INSTANCE = Mappers.getMapper(PostsMapper.class);
 
     PostCreateDTO toDTO(Posts posts);
-    Posts toEntity(PostCreateForShelterDTO postCreateForShelterDTO);
+    Posts toEntity(PostCreateDTO postCreateForShelterDTO);
 }
