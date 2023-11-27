@@ -1,9 +1,11 @@
 package com.pet.foundation.pataamiga.service.impl;
 
+import com.pet.foundation.pataamiga.domain.email.dto.EmailDTO;
 import com.pet.foundation.pataamiga.domain.user.User;
 import com.pet.foundation.pataamiga.exceptions.EmailAlreadyExists;
 import com.pet.foundation.pataamiga.exceptions.UserNotFoundException;
 import com.pet.foundation.pataamiga.repositories.UserRepository;
+import com.pet.foundation.pataamiga.service.EmailService;
 import com.pet.foundation.pataamiga.utils.CreateUserDTOCreator;
 import com.pet.foundation.pataamiga.utils.UserCreator;
 import org.junit.jupiter.api.AfterEach;
@@ -30,6 +32,9 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    private EmailService emailService;
+
     @BeforeEach
     void setUp() {
 
@@ -41,6 +46,8 @@ class UserServiceTest {
 
         BDDMockito.when(userRepository.save(ArgumentMatchers.any(User.class)))
                 .thenReturn(UserCreator.returnValidUser());
+
+        BDDMockito.doNothing().when(emailService).sendEmail(ArgumentMatchers.any(EmailDTO.class));
     }
 
     @AfterEach

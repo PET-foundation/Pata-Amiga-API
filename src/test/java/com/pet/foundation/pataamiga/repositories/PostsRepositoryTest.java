@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class PostsRepositoryTest {
 
     @Autowired
-    private PostsRepository postsRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private PostsRepository postsRepository;
 
     @BeforeEach
     void setUp() {
