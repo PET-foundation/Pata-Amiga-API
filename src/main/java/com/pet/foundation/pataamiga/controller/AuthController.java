@@ -3,6 +3,7 @@ package com.pet.foundation.pataamiga.controller;
 import com.pet.foundation.pataamiga.controller.responses.LoginResponse;
 import com.pet.foundation.pataamiga.controller.responses.RegisterResponse;
 import com.pet.foundation.pataamiga.domain.user.dto.LoginDTO;
+import com.pet.foundation.pataamiga.domain.user.dto.LoginGoogleDTO;
 import com.pet.foundation.pataamiga.domain.user.dto.UserCreateDTO;
 import com.pet.foundation.pataamiga.service.AuthService;
 import com.pet.foundation.pataamiga.swagger.annotatios.ConflictResponse;
@@ -33,6 +34,15 @@ public class AuthController {
     @ForbiddenResponse
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDTO) {
         return ResponseEntity.ok(authService.login(loginDTO));
+    }
+
+    @PostMapping("/login/google")
+    @Operation(summary = "Login with Google", description = "You can login with your Google account")
+    @Tag(name = "auth")
+    @OkResponse
+    @ForbiddenResponse
+    public ResponseEntity<LoginResponse> loginWithGoogle(@RequestBody LoginGoogleDTO loginInfo) throws Exception {
+        return ResponseEntity.ok(authService.loginWithGoogle(loginInfo.token()));
     }
 
 

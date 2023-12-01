@@ -4,7 +4,9 @@ import com.pet.foundation.pataamiga.domain.user.Contact;
 import com.pet.foundation.pataamiga.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 
+@Builder
 public record UserCreateDTO(
         @NotBlank(message = "Name is mandatory")
         @Schema(description = "User name", example = "John Doe")
