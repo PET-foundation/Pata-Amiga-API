@@ -36,13 +36,14 @@ public class UserController {
         UserResponseDTO response = UserResponseDTO.toResponse(user);
         return ResponseEntity.ok(response);
     }
+
     @GetMapping("/themselves")
     @Operation(summary = "Get user by token")
     @Tag(name = "user")
     @OkResponse
     @ForbiddenResponse
     @NotFoundResponse
-    public ResponseEntity<UserResponseDTO> getUserByToken( @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<UserResponseDTO> getUserByToken(@AuthenticationPrincipal UserDetails userDetails) {
         User user = userService.getUserByEmail(userDetails.getUsername());
         UserResponseDTO response = UserResponseDTO.toResponse(user);
         return ResponseEntity.ok(response);
